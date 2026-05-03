@@ -26,7 +26,13 @@ pipeline {
 
         stage('Trivy Scan') {
             steps {
-                sh 'trivy image --scanners vuln web-dev:latest'
+                sh '''
+                trivy image \
+                --scanners vuln \
+                --skip-java-db-update \
+                --severity HIGH,CRITICAL \
+                web-dev:latest
+                '''
             }
         }
 
