@@ -10,12 +10,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/Basavarajgn15/testing.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t web-dev .'
