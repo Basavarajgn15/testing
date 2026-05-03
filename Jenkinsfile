@@ -24,6 +24,12 @@ pipeline {
             }
         }
 
+        stage('Trivy Scan') {
+            steps {
+                sh 'trivy image web-dev:latest'
+            }
+        }
+
         stage('Tag Image') {
             steps {
                 sh 'docker tag web-dev:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:$IMAGE_TAG'
