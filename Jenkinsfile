@@ -10,6 +10,16 @@ pipeline {
 
     stages {
 
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh '''
+                    echo "Running SonarQube Scan..."
+                    '''
+                }
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t web-dev .'
